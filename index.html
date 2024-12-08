@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e02626;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #1143cc;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 300px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            width: 100px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Temperature Converter</h1>
+
+        <div class="converter">
+            <input type="number" id="inputTemp" placeholder="Enter temperature" />
+            
+            <select id="inputUnit">
+                <option value="Celsius">Celsius</option>
+                <option value="Fahrenheit">Fahrenheit</option>
+                <option value="Kelvin">Kelvin</option>
+            </select>
+
+            <button id="convertButton">Convert</button>
+
+            <div id="output">
+                <p id="celsiusResult">Celsius: </p>
+                <p id="fahrenheitResult">Fahrenheit: </p>
+                <p id="kelvinResult">Kelvin: </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to convert the temperature
+        function convertTemperature() {
+            const inputTemp = parseFloat(document.getElementById("inputTemp").value);
+            const inputUnit = document.getElementById("inputUnit").value;
+            
+            if (isNaN(inputTemp)) {
+                alert("Please enter a valid number!");
+                return;
+            }
+
+            let celsius, fahrenheit, kelvin;
+
+            // Conversion logic
+            if (inputUnit === "Celsius") {
+                celsius = inputTemp;
+                fahrenheit = (celsius * 9/5) + 32;
+                kelvin = celsius + 273.15;
+            } else if (inputUnit === "Fahrenheit") {
+                fahrenheit = inputTemp;
+                celsius = (fahrenheit - 32) * 5/9;
+                kelvin = celsius + 273.15;
+            } else if (inputUnit === "Kelvin") {
+                kelvin = inputTemp;
+                celsius = kelvin - 273.15;
+                fahrenheit = (celsius * 9/5) + 32;
+            }
+
+            // Display results
+            document.getElementById("celsiusResult").innerText = Celsius: ${celsius.toFixed(2)};
+            document.getElementById("fahrenheitResult").innerText = Fahrenheit: ${fahrenheit.toFixed(2)};
+            document.getElementById("kelvinResult").innerText = Kelvin: ${kelvin.toFixed(2)};
+        }
+
+        // Attach the event listener to the button
+        document.getElementById("convertButton").addEventListener("click", convertTemperature);
+    </script>
+</body>
+</html>
